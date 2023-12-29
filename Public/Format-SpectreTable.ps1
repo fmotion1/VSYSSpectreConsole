@@ -70,18 +70,20 @@ function Format-SpectreTable {
             }
             $headerProcessed = $true
         }
+
         $Data | Foreach-Object {
             $row = @()
             $row = $_.psobject.Properties | ForEach-Object {
                 $cell = $_.Value
                 if ($null -eq $cell) {
-                    [Text]::new("")
+                    [Markup]::new("")
                 }
                 else {
-                    [Text]::new($cell.ToString())
+                    [Markup]::new($cell.ToString())
                 }
             }
-            $table = [TableExtensions]::AddRow($table, [Text[]]$row)
+
+            $table = [TableExtensions]::AddRow($table, [Markup[]]$row)
         }
     }
     end {

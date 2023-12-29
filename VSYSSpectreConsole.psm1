@@ -1,6 +1,7 @@
 # Import Classes
 try {
     Get-ChildItem -Path "$PSScriptRoot\class\*.ps1" -Recurse | ForEach-Object {
+        Write-Host "Loaded"
         . $_.FullName
     }
 }
